@@ -52,6 +52,12 @@ describe("User List Form", () => {
         cy.get('.errors')
             .contains('A valid email address is required')
 
+        cy.get('input[name="email"]')
+            .type(email)
+
+        cy.contains('A valid email address is required')
+            .should('not.exist')
+
     })
 
 
