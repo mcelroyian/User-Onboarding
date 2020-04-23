@@ -27,7 +27,7 @@ function Form(props) {
                     name='email' />
                 <label htmlFor='password'>Password:  </label>
                 <input 
-                    value={userData.passord}
+                    value={userData.password}
                     onChange={onChange}
                     type='text' 
                     name='password' />

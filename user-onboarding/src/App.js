@@ -78,6 +78,25 @@ const onChange = e => {
 const onCheckChange = e => {
   const name = e.target.name
   const value = e.target.checked
+
+  yup
+    .reach(schema, name)
+    .validate(value)
+    .then(valid => {
+      // clear errors
+      setErrors({
+        ...errors, [name]: '',
+      })
+    })
+    .catch(err => {
+      // add errors
+      setErrors({
+        ...errors, [name]: err.errors[0],
+      })
+    })
+
+
+
   SetNewUser({...newUser, [name]:value})
 
 }
@@ -86,6 +105,7 @@ const onCheckChange = e => {
 const onSubmit = (e) => {
   e.preventDefault()
   sendUser(newUser)
+  SetNewUser(userTemplate)
 }
 
 ///////////// END OF EVENT HANDLERS
